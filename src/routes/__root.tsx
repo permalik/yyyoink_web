@@ -18,14 +18,3 @@ const RouteComponent = () => {
 export const Route = createRootRoute({
     component: RouteComponent,
 });
-
-/*
-        <Flex direction="row" align="center" justify="between">
-            <CustomLink to="/" style={{fontWeight: 800}}>yyyoink</CustomLink>
-            <Flex direction="row" align="center" justify="center" gap="3">
-                <CustomLink to="/generate">generate</CustomLink>
-                <CustomLink to="/account">account</CustomLink>
-                <Switch onCheckedChange={() => toggle()}></Switch>
-            </Flex>
-        </Flex>
-*/
