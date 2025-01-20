@@ -1,4 +1,12 @@
+:root {
+    --font-size-p: clamp(0.75rem, 5vh, 2rem);
+}
+
 body {
-    min-width: 100vh;
+    min-height: 100vh;
     margin: 0;
+}
+
+p {
+    font-size: var(--font-size-p);
 }
