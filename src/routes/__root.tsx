@@ -1,14 +1,13 @@
-import {createRootRoute, Link, Outlet} from "@tanstack/react-router";
+import {createRootRoute, Outlet} from "@tanstack/react-router";
 import {TanStackRouterDevtools} from "@tanstack/router-devtools";
-import {Theme, Link as RadixLink} from "@radix-ui/themes";
+import {Theme} from "@radix-ui/themes";
+import {BaseLink} from "../components/BaseLink.tsx";
 
 export const Route = createRootRoute({
     component: () => (
         <>
             <Theme accentColor="ruby" grayColor="sand">
-                <RadixLink asChild style={{fontWeight: 800}}>
-                    <Link to="/">yyyoink</Link>
-                </RadixLink>
+                <BaseLink to={"/"}>yyyoink</BaseLink>
                 <Outlet/>
                 <TanStackRouterDevtools/>
             </Theme>
