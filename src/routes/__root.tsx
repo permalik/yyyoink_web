@@ -1,7 +1,6 @@
 import {createRootRoute, Outlet} from "@tanstack/react-router";
 import {TanStackRouterDevtools} from "@tanstack/router-devtools";
 import {Theme} from "@radix-ui/themes";
-import BaseHeader from "../components/BaseHeader.tsx";
 import useThemeStore from "../stores/themeStore.tsx";
 
 const RouteComponent = () => {
@@ -9,7 +8,6 @@ const RouteComponent = () => {
     return (
         <>
             <Theme appearance={theme} accentColor={"ruby"} grayColor={"sand"}>
-                <BaseHeader/>
                 <Outlet/>
                 <TanStackRouterDevtools/>
             </Theme>
