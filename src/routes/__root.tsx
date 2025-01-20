@@ -1,20 +1,24 @@
 import {createRootRoute, Outlet} from "@tanstack/react-router";
 import {TanStackRouterDevtools} from "@tanstack/router-devtools";
-import {Flex, Theme} from "@radix-ui/themes";
-import {BaseLink} from "../components/BaseLink.tsx";
+import {Theme} from "@radix-ui/themes";
+import BaseHeader from "../components/BaseHeader.tsx";
+import useThemeStore from "../stores/themeStore.tsx";
 
-export const Route = createRootRoute({
-    component: () => (
+const RouteComponent = () => {
+    const {theme} = useThemeStore();
+    return (
         <>
-            <Theme accentColor={"ruby"} grayColor={"sand"}>
-                <Flex direction={"row"}>
-                    <BaseLink to={"/"} style={{fontWeight: 800}}>yyyoink</BaseLink>
-                </Flex>
+            <Theme appearance={theme} accentColor={"ruby"} grayColor={"sand"}>
+                <BaseHeader/>
                 <Outlet/>
                 <TanStackRouterDevtools/>
             </Theme>
         </>
-    ),
+    );
+};
+
+export const Route = createRootRoute({
+    component: RouteComponent,
 });
 
 /*
