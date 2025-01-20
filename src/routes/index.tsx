@@ -1,16 +1,15 @@
 import {createFileRoute} from "@tanstack/react-router";
-import BaseHeader from "../components/BaseHeader.tsx";
+import BaseLayout from "../components/BaseLayout.tsx";
 
-function IndexComponent() {
+const IndexComponent = () => {
     return (
         <>
-            <BaseHeader/>
-            <main>
+            <BaseLayout>
                 index
-            </main>
+            </BaseLayout>
         </>
     );
-}
+};
 
 export const Route = createFileRoute("/")({
     component: IndexComponent,
