@@ -12,7 +12,7 @@ const BaseLinkComponent = React.forwardRef<HTMLAnchorElement, BaseLinkProps>(
     (props, ref) => {
         return (
             <RadixLink asChild>
-                <Link to={props.to} ref={ref}>
+                <Link ref={ref} {...props}>
                     {props.children}
                 </Link>
             </RadixLink>
