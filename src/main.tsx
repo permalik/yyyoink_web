@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "@radix-ui/themes/styles.css";
 import {RouterProvider, createRouter} from "@tanstack/react-router";
 import {routeTree} from "./routeTree.gen.ts";
-import "./styles/base.css";
+import "./styles/Base.css";
 
 const router = createRouter({routeTree});
 
