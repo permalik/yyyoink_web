@@ -8,10 +8,10 @@ import "../styles/LoginForm.css";
 const LoginForm = () => {
     const {theme} = useThemeStore();
 
-    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        const $form = event.currentTarget;
-        const formData = new FormData($form);
+        const form = event.currentTarget;
+        const formData = new FormData(form);
 
         const email = formData.get("email");
         const password = formData.get("password");
@@ -19,17 +19,25 @@ const LoginForm = () => {
         console.log("email: ", email);
         console.log("password: ", password);
 
-        /*
-        submit(formData, {
-            method: ($form.getAttribute("method") ?? $form.method) as HTMLFormMethod,
-            action: $form.getAttribute("action") ?? $form.action,
-        });
-        */
+        const data = Object.fromEntries(formData.entries());
+        console.log("body: ", data);
+
+        try {
+            await fetch("http://localhost:5046/users", {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                method: form.method,
+                body: JSON.stringify(data),
+            });
+        } catch (e) {
+            console.error("failed to login: ", e);
+        }
     }
 
     return (
         <>
-            <RadixForm.Root className="FormRoot" method="POST" action="/profile" onSubmit={handleSubmit}>
+            <RadixForm.Root className="FormRoot" method="POST" onSubmit={handleSubmit}>
                 <RadixForm.Field name="email" className="FormField">
                     <div
                         style={{
