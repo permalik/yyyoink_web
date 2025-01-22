@@ -3,7 +3,11 @@ import BaseLayout from "../components/BaseLayout.tsx";
 import {Flex} from "@radix-ui/themes";
 import {BaseLink} from "../components/BaseLink.tsx";
 
-const IndexComponent = () => {
+export const Route = createFileRoute("/")({
+    component: IndexComponent,
+});
+
+function IndexComponent() {
     return (
         <BaseLayout>
             <h1>
@@ -13,11 +17,8 @@ const IndexComponent = () => {
             <Flex direction="row" gap="3">
                 <BaseLink to={"/"}>Generate</BaseLink>
                 <BaseLink to={"/login"}>Login</BaseLink>
+                <BaseLink to={"/createAccount"}>Create Account</BaseLink>
             </Flex>
         </BaseLayout>
     );
 };
-
-export const Route = createFileRoute("/")({
-    component: IndexComponent,
-});

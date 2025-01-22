@@ -3,7 +3,7 @@ import BaseHeader from "./BaseHeader.tsx";
 import {Flex} from "@radix-ui/themes";
 import BaseFooter from "./BaseFooter.tsx";
 
-const BaseLayout = ({children}: { children: React.ReactNode }) => {
+export default function BaseLayout({children}: { children: React.ReactNode }) {
     return (
         <>
             <Flex minHeight={"100vh"} direction={"column"} style={{padding: "0.5rem clamp(0.25rem, 5vw, 10rem)"}}>
@@ -24,5 +24,3 @@ const BaseLayout = ({children}: { children: React.ReactNode }) => {
         </>
     );
 };
-
-export default BaseLayout;

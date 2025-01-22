@@ -1,9 +1,7 @@
-const BaseFooter = () => {
+export default function BaseFooter() {
     return (
         <div>
             basefooter
         </div>
     );
 };
-
-export default BaseFooter;

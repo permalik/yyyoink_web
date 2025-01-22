@@ -3,7 +3,11 @@ import {TanStackRouterDevtools} from "@tanstack/router-devtools";
 import {Theme} from "@radix-ui/themes";
 import useThemeStore from "../stores/themeStore.tsx";
 
-const RouteComponent = () => {
+export const Route = createRootRoute({
+    component: RouteComponent,
+});
+
+function RouteComponent() {
     const {theme} = useThemeStore();
     return (
         <>
@@ -14,7 +18,3 @@ const RouteComponent = () => {
         </>
     );
 };
-
-export const Route = createRootRoute({
-    component: RouteComponent,
-});

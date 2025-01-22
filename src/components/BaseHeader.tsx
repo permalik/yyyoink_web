@@ -2,7 +2,7 @@ import useThemeStore from "../stores/themeStore.tsx";
 import {Flex, Switch} from "@radix-ui/themes";
 import {BaseLink} from "./BaseLink.tsx";
 
-const BaseHeader = () => {
+export default function BaseHeader() {
     const toggle = useThemeStore((state) => state.toggle);
     return (
         <Flex direction={"row"} align={"center"} justify={"between"}>
@@ -15,5 +15,3 @@ const BaseHeader = () => {
         </Flex>
     );
 };
-
-export default BaseHeader;

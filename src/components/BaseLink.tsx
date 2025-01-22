@@ -6,7 +6,7 @@ import {createLink, LinkComponent} from "@tanstack/react-router";
 interface BaseLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
     to: string,
     children: string,
-}
+};
 
 const BaseLinkComponent = React.forwardRef<HTMLAnchorElement, BaseLinkProps>(
     (props, ref) => {

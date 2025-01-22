@@ -5,7 +5,7 @@ import {combineClasses} from "../utils/styles.ts";
 import useThemeStore from "../stores/themeStore.tsx";
 import "../styles/LoginForm.css";
 
-export default function LoginForm() {
+export default function CreateAccountForm() {
     const {theme} = useThemeStore();
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -16,14 +16,14 @@ export default function LoginForm() {
         const email = formData.get("email");
         const password = formData.get("password");
 
-        console.log("login email: ", email);
-        console.log("login password: ", password);
+        console.log("createAccount email: ", email);
+        console.log("createAccount password: ", password);
 
         const data = Object.fromEntries(formData.entries());
-        console.log("login body: ", data);
+        console.log("createAccount body: ", data);
 
         try {
-            await fetch("http://localhost:5046/users/login", {
+            await fetch("http://localhost:5046/users", {
                 headers: {
                     "Content-Type": "application/json",
                 },
