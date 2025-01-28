@@ -12,26 +12,26 @@ export default function LoginForm() {
         event.preventDefault();
         const form = event.currentTarget;
         const formData = new FormData(form);
-
-        const email = formData.get("email");
-        const password = formData.get("password");
-
-        console.log("login email: ", email);
-        console.log("login password: ", password);
-
         const data = Object.fromEntries(formData.entries());
-        console.log("login body: ", data);
 
         try {
-            await fetch("http://localhost:5046/users/login", {
+            const response = await fetch("http://localhost:5046/users/login", {
                 headers: {
                     "Content-Type": "application/json",
                 },
                 method: form.method,
                 body: JSON.stringify(data),
             });
-        } catch (e) {
-            console.error("failed to login: ", e);
+
+            const result = await response.json();
+            console.log("result: ", result);
+            const {uuid, email, password} = result;
+            console.log("user email: ", email);
+            console.log("user password: ", password);
+            console.log("user uuid: ", uuid);
+
+        } catch (err) {
+            console.error("failed to login: ", err);
         }
     }
 
