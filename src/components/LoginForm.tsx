@@ -4,9 +4,11 @@ import * as RadixForm from "@radix-ui/react-form";
 import {combineClasses} from "../utils/styles.ts";
 import useThemeStore from "../stores/themeStore.tsx";
 import "../styles/LoginForm.css";
+import {useNavigate} from "@tanstack/react-router";
 
 export default function LoginForm() {
     const {theme} = useThemeStore();
+    const navigate = useNavigate({ from: "/login" });
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -24,11 +26,12 @@ export default function LoginForm() {
             });
 
             const result = await response.json();
-            console.log("result: ", result);
-            const {uuid, email, password} = result;
-            console.log("user email: ", email);
-            console.log("user password: ", password);
-            console.log("user uuid: ", uuid);
+
+            console.log(`${result.email} has been logged in`);
+
+            if (response.ok) {
+                await navigate({ to: "/profile" });
+            }
 
         } catch (err) {
             console.error("failed to login: ", err);
