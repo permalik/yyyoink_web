@@ -4,34 +4,33 @@ import * as RadixForm from "@radix-ui/react-form";
 import {combineClasses} from "../utils/styles.ts";
 import useThemeStore from "../stores/themeStore.tsx";
 import "../styles/LoginForm.css";
+import {useNavigate} from "@tanstack/react-router";
 
 export default function CreateAccountForm() {
     const {theme} = useThemeStore();
+    const navigate = useNavigate({ from: "/createAccount" });
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         const form = event.currentTarget;
         const formData = new FormData(form);
-
-        const email = formData.get("email");
-        const password = formData.get("password");
-
-        console.log("createAccount email: ", email);
-        console.log("createAccount password: ", password);
-
         const data = Object.fromEntries(formData.entries());
-        console.log("createAccount body: ", data);
 
         try {
-            await fetch("http://localhost:5046/users", {
+            const response = await fetch("http://localhost:5046/users", {
                 headers: {
                     "Content-Type": "application/json",
                 },
                 method: form.method,
                 body: JSON.stringify(data),
             });
+            const result = await response.json();
+            if (response.ok) {
+                console.log(`created account for ${result.email}`);
+                await navigate({ to: "/profile" });
+            }
         } catch (e) {
-            console.error("failed to login: ", e);
+            console.error("failed to create account: ", e);
         }
     }
 
