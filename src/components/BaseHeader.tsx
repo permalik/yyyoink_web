@@ -9,7 +9,7 @@ export default function BaseHeader() {
             <BaseLink to={"/"} style={{fontWeight: 800}}>yyyoink</BaseLink>
             <Flex direction={"row"} align={"center"} justify={"center"} gap={"3"}>
                 <BaseLink to={"/"}>generate</BaseLink>
-                <BaseLink to={"/"}>account</BaseLink>
+                <BaseLink to={"/"}>profile</BaseLink>
                 <Switch onCheckedChange={() => toggle()}/>
             </Flex>
         </Flex>

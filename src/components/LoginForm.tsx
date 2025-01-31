@@ -27,9 +27,9 @@ export default function LoginForm() {
 
             const result = await response.json();
 
-            console.log(`${result.email} has been logged in`);
-
+            // TODO: toast
             if (response.ok) {
+                console.log(`${result.email} has been logged in`);
                 await navigate({ to: "/profile" });
             }
 
