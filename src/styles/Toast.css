@@ -1,0 +1,8 @@
+.SuccessLogin {
+    background-color: var(--toastify-color-success);
+    color: #000;
+}
+.FailLogin {
+    background-color: var(--toastify-color-error);
+    color: #000;
+}

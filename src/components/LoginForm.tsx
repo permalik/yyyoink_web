@@ -2,15 +2,25 @@ import React from "react";
 import {useNavigate} from "@tanstack/react-router";
 import {Button} from "@radix-ui/themes";
 import * as RadixForm from "@radix-ui/react-form";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import useThemeStore from "../stores/themeStore.tsx";
 import {combineClasses} from "../utils/styles.ts";
 import "../styles/LoginForm.css";
+import "../styles/Toast.css";
 
 export default function LoginForm() {
     const {theme} = useThemeStore();
     const navigate = useNavigate({ from: "/login" });
-    const notifyLoggedIn = () => toast("Login Successful");
+    const successLogin= () => toast("Login Successful", {
+        position: "bottom-right",
+        hideProgressBar: true,
+        className: "SuccessLogin",
+    });
+    const failLogin= () => toast("Login Failed", {
+        position: "bottom-right",
+        hideProgressBar: true,
+        className: "FailLogin",
+    });
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -31,12 +41,15 @@ export default function LoginForm() {
 
             // TODO: toast
             if (response.ok) {
-                notifyLoggedIn();
+                successLogin();
                 console.log(`${result.email} has been logged in`);
                 await navigate({ to: "/profile" });
+            } else {
+                failLogin();
             }
 
         } catch (err) {
+            failLogin();
             console.error("failed to login: ", err);
         }
     }
