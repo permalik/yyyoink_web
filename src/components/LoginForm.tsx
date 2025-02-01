@@ -1,14 +1,16 @@
 import React from "react";
+import {useNavigate} from "@tanstack/react-router";
 import {Button} from "@radix-ui/themes";
 import * as RadixForm from "@radix-ui/react-form";
-import {combineClasses} from "../utils/styles.ts";
+import { ToastContainer, toast } from "react-toastify";
 import useThemeStore from "../stores/themeStore.tsx";
+import {combineClasses} from "../utils/styles.ts";
 import "../styles/LoginForm.css";
-import {useNavigate} from "@tanstack/react-router";
 
 export default function LoginForm() {
     const {theme} = useThemeStore();
     const navigate = useNavigate({ from: "/login" });
+    const notifyLoggedIn = () => toast("Login Successful");
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -29,6 +31,7 @@ export default function LoginForm() {
 
             // TODO: toast
             if (response.ok) {
+                notifyLoggedIn();
                 console.log(`${result.email} has been logged in`);
                 await navigate({ to: "/profile" });
             }
